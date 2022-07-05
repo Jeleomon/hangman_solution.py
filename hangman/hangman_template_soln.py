@@ -46,16 +46,16 @@ class Hangman:
         self.word_list = word_list
         self.num_lives =num_lives
         self.word = random.choice(word_list)
-        self.word_guessed ="'-',"*len(word_list)
+        self.word_guessed =list('_' * len(self.word))
      # The number of unique letters   
-        self.num_letters =len(set(self.word_guessed))
+        self.num_letters =len(set(list(self.word_guessed)))
         self.list_letters= []
 
         # TODO 2: Initialize the attributes as indicated in the docstring
         # TODO 2: Print two message upon initialization:
-        print (f"The mystery word has {len(self.word)} characters")
+        print(f"The mystery word has {len(self.word)} characters")
         # 1. "The mystery word has {len(self.word)} characters" (The number of letters is NOT the UNIQUE number of letters)
-        print(self.word_guessed)
+        print(f"{self.word_guessed}")
         # 2. {word_guessed}
        # pass
 
@@ -72,22 +72,37 @@ class Hangman:
 
         '''
         # TODO 3: Check if the letter is in the word. TIP: You can use the lower() method to convert the letter to lowercase
-        letter = letter.lower()
-        if letter in self.word:
-            print(f"Nice {letter} is in the word !")   
-                   # TODO 3: If the letter is in the word, replace the '_' in the word_guessed list with the letter  
+         # TODO 3: If the letter is in the word, replace the '_' in the word_guessed list with the letter  
+        self.letter = letter.lower()
+        self.list_letters.append(self.letter) 
+        if self.letter in self.word:
+            print(f"Nice {self.letter} is in the word !")     
+                  
             for i in range(0,len(self.word)):
-                if self.word[i] == letter:
-                    self.word_guessed[i] = letter
-            self.num_letters -=1
+                if self.word[i] == self.letter:
+                    self.word_guessed[i] = self.letter
             print(f"{self.word_guessed}")
+            self.num_letters -=1
+            
+            if  "_" not in self.word_guessed:
+                print("Congratulations! You won!") 
+                exit()
+            
         else:            
             self.num_lives -=1 
-            print(f"Sorry, {letter} is not in the word !")
-            print(f" You have {self.num_lives} lives left") 
-            if self.num_lives == 0:
-               print(f"You lost! The word was {self.word}")
+            print(f"Sorry, {self.letter} is not in the word !")
+            print(f" You have {self.num_lives} lives left")
+            print(f"{self.word_guessed}") 
+
+            if self.num_lives==0:
+                print (f"You lost! The word was {self.word}")
+                exit()
+            
+            
                
+
+           
+        
             
         
                 
@@ -130,13 +145,13 @@ class Hangman:
 
         while True:
             letter = input('Please enter a single character: ')
-            if len(letter)>1:
-                 print ('Please, enter just one character')
-            elif len(letter)==1:
+            if len(letter)==1:
                 if letter in self.list_letters: 
-                 print (f"{letter} was already tried")
+                   print (f"{letter} was already tried")
                 else:
-                   Hangman.check_letter(self,letter)
+                    Hangman.check_letter(self, letter)
+            elif len(letter)>1:
+                print("Please enter just one character: ")
             else:
                 print("Please, enter a character")
                 break
@@ -152,11 +167,13 @@ def play_game(word_list):
     # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
     #game.check_letter()
-    while True:
-      game.ask_letter()
-      if "_" not in game.word_guessed:
-            print("Congratulations! You won!") 
-            exit()
+    game.ask_letter()
+       #if game.num_lives == 0:
+            
+       #elif "_" not in game.word_guessed:
+            
+    
+             #  print(f"You lost! The word was {self.word}")
     #if "_" not in  game.word_guessed:
          #   print("Congratulations! You won!")
           #  exit()
