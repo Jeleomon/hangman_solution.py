@@ -132,16 +132,7 @@ class Hangman:
         2. If the character is a single character
         If it passes both checks, it calls the check_letter method.
         '''
-    #while True:
-       # letter = input('Please enter a single character: ')   
-        
-       # if len(letter)>1:
-       #    print("Please, enter just one character")
-       # elif len(letter)==1:
-        # (letter in self.list_letter):
-       # else:
-       # self.check_letter(letter)
-       # print("Please enter a character: ")
+    
 
         while True:
             letter = input('Please enter a single character: ')
@@ -168,24 +159,6 @@ def play_game(word_list):
     game = Hangman(word_list, num_lives=5)
     #game.check_letter()
     game.ask_letter()
-       #if game.num_lives == 0:
-            
-       #elif "_" not in game.word_guessed:
-            
-    
-             #  print(f"You lost! The word was {self.word}")
-    #if "_" not in  game.word_guessed:
-         #   print("Congratulations! You won!")
-          #  exit()
-         
-        #elif game.num_lives == 0:
-         #   print(f"You lost! The word was {game.word}")
-        
-         
-        
-            
-    
-
     # TODO 1: To test this task, you can call the ask_letter method
     # TODO 2: To test this task, upon initialization, two messages should be printed 
     # TODO 3: To test this task, you call the ask_letter method and check if the letter is in the word
